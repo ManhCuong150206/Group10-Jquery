@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123e2c">
+    <title>Bạn hợp vị trí nào trong bóng đá?</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ctext y='32' font-size='32'%3E⚽%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="field-background" aria-hidden="true">
+        <i></i><span>⚽</span><span>🥅</span><span>🧤</span><span>👟</span><span>🏆</span>
+    </div>
+    <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="Về trang chủ Sân Cỏ"><svg viewBox="0 0 32 32"
+                aria-hidden="true">
+                <path d="M16 2 29 9v14L16 30 3 23V9Z" />
+                <path d="m16 9 7 5-3 8h-8l-3-8Z" />
+            </svg>Sân Cỏ<span>/</span><span>Quiz bóng đá</span></a>
+        <span class="header-note"></span>
+    </header>
+    <main class="container">
+        <!-- Grid nằm trên thẻ con để jQuery show/hide hoạt động đúng. -->
+        <section id="start-box" aria-labelledby="start-title">
+            <div class="start-layout">
+                <div class="start-copy">
+                    <h1 id="start-title">Bạn hợp vị trí nào<br>trong bóng đá?</h1>
+                    <p>Khám phá vị trí dành cho bạn và tìm hình mẫu của mình trên sân cỏ.</p>
+                    <button id="btn-start" class="btn">Ra sân thôi <span aria-hidden="true">↗</span></button>
+                    <p class="cta-note"></p>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-pitch">
+                        <div class="pitch-circle"></div>
+                        <div class="pitch-goal"></div>
+                        <div class="pitch-goal bottom"></div>
+                    </div>
+                    <div class="ball-stage">
+                        <div class="hero-ball">⚽</div>
+                        <div class="ball-shadow"></div>
+                    </div>
+                    <span class="position-ticket ticket-gk">🧤 <b>GK</b> Người gác đền</span>
+                    <span class="position-ticket ticket-cmf">🧠 <b>CMF</b> Nhạc trưởng</span>
+                    <span class="position-ticket ticket-cf">🥅 <b>CF</b> Tay săn bàn</span>
+                    <span class="visual-caption">Sân cỏ đang chờ bạn.</span>
+                </div>
+            </div>
+            <div class="start-facts">
+                <div><strong>12</strong><span>Câu hỏi khám phá</span></div>
+                <div><strong>11</strong><span>Vị trí trên sân</span></div>
+                <div><strong>~2<span> phút</span></strong><span>Để xem mình chơi vị trí gì</span></div>
+            </div>
+        </section>
+        <section id="quiz-box" aria-label="Câu hỏi khám phá vị trí">
+            <div class="quiz-topline"><span>Khám phá lối chơi của bạn</span><span id="progress-label">0 / 12</span>
+            </div>
+            <div class="progress" role="progressbar" aria-label="Tiến độ trả lời" aria-valuemin="0" aria-valuemax="12"
+                aria-valuenow="0">
+                <div id="progress-bar"><span class="progress-ball" aria-hidden="true">⚽</span></div>
+            </div>
+            <div class="question-stage">
+                <div id="question-area">
+                    <div class="question-meta">
+                        <p id="question-count"></p><span id="question-icon" aria-hidden="true"></span>
+                    </div>
+                    <h2 id="question-text" tabindex="-1"></h2>
+                    <div id="answers"></div>
+                </div>
+            </div>
+            <p class="quiz-note"></p>
+        </section>
+        <section id="result-box" aria-labelledby="result-name">
+            <div class="result-layout">
+                <div class="player-card">
+                    <div class="card-top"><span>Thẻ cầu thủ của bạn</span><span aria-hidden="true"></span></div>
+                    <div class="player-badge"><span id="result-icon" aria-hidden="true"></span><strong
+                            id="result-code"></strong></div>
+                    <h2 id="result-name" tabindex="-1"></h2>
+                    <p id="result-star"></p>
+                    <p id="result-desc"></p>
+                    <div class="card-bottom"><span>Sân Cỏ</span><span>Chất riêng trên sân.</span></div>
+                </div>
+                <div class="result-details">
+                    <div class="role-info">
+                        <h3>Vai trò này làm gì?</h3>
+                        <p id="role-definition"></p>
+                        <ul id="role-duties"></ul>
+                        <h4>Kỹ năng cần có</h4>
+                        <div id="role-skills"></div>
+                    </div>
+                    <div class="position-info">
+                        <div>
+                            <h3>Vị trí của bạn</h3>
+                            <p id="position-description"></p>
+                            <p class="attack-direction">↑ Hướng tấn công</p>
+                        </div>
+                        <svg id="result-pitch" viewBox="0 0 100 150" role="img"
+                            aria-labelledby="pitch-title pitch-description">
+                            <title id="pitch-title">Vị trí trên sân bóng</title>
+                            <desc id="pitch-description"></desc>
+                            <defs>
+                                <pattern id="grass" width="100" height="30" patternUnits="userSpaceOnUse">
+                                    <rect width="100" height="30" fill="#237348" />
+                                    <rect width="100" height="15" fill="#2a7d4f" />
+                                </pattern>
+                            </defs>
+                            <rect width="100" height="150" rx="5" fill="url(#grass)" />
+                            <g fill="none" stroke="#fff" stroke-opacity=".65" stroke-width=".7">
+                                <path d="M5 5h90v140H5zM5 75h90" />
+                                <circle cx="50" cy="75" r="12" />
+                                <path
+                                    d="M23 5v23h54V5M37 5v9h26V5M23 145v-23h54v23M37 145v-9h26v9M43 5V1h14v4M43 145v4h14v-4" />
+                                <path d="M39 28a12 12 0 0 0 22 0M39 122a12 12 0 0 1 22 0" />
+                            </g>
+                            <g fill="white">
+                                <circle cx="50" cy="75" r="1" />
+                                <circle cx="50" cy="21" r="1" />
+                                <circle cx="50" cy="129" r="1" />
+                            </g>
+                            <circle id="pitch-pulse" r="8" fill="#ffd45b" opacity=".3" />
+                            <circle id="pitch-dot" r="5" fill="#ffd45b" stroke="#123e2c" stroke-width="1.2" />
+                            <text id="pitch-label" text-anchor="middle" font-size="6" font-weight="700"
+                                fill="#fff"></text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="ranking">
+                <div class="ranking-heading">
+                    <h3>Top 3 vị trí phù hợp</h3>
+                    <p>Điểm từ lựa chọn của bạn</p>
+                </div>
+                <div id="top3"></div>
+            </div>
+            <div class="result-actions"><button id="btn-restart" class="btn">Làm lại <span
+                        aria-hidden="true">↻</span></button></div>
+        </section>
+    </main>
+    <footer class="site-footer"><span></span><span></span></footer>
+    <div id="effects" aria-hidden="true"></div>
+    <div id="confetti" aria-hidden="true"></div>
+    <div id="quiz-status" class="sr-only" role="status" aria-live="polite"></div>
+    <noscript>
+        <p class="noscript">Hãy bật JavaScript để bắt đầu quiz.</p>
+    </noscript>
+</body>
+
+</html>
